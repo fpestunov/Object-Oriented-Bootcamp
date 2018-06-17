@@ -12,6 +12,10 @@ class Person
 }
 
 $john = new Person('John Doe');
-$john->age = 30;
 
+$john->age = 30;
+var_dump($john);
+
+// Update age
+$john->age++;
 var_dump($john);
