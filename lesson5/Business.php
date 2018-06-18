@@ -28,28 +28,41 @@ class Business
 		$this->staff->add($person); // way objects communicate with other
 	}	
 
+	public function getStaffMembers()
+	{
+		return $this->staff->members(); // way objects communicate with other
+	}	
+
 }
 
 class Staff
 {
 	protected $members = [];
 
+	public function __construct($members = [])
+	{
+		$this->members = $members;
+	}
+
 	public function add(Person $person)
 	{
 		$this->members[] = $person;
 	}
+
+	public function members()
+	{
+		return $this->members;
+	}
 }
 
 $jeffrey = new Person('Jeffry Way');
-$john = new Person('John Doe');
-
-$staff = new Staff;
-
+$staff = new Staff([$jeffrey]);
 $laracasts = new Business($staff);
 
-$laracasts->hire($jeffrey);
+$john = new Person('John Doe');
 $laracasts->hire($john);
 
 var_dump($laracasts);
+var_dump($laracasts->getStaffMembers());
 
 
