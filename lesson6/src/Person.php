@@ -1,5 +1,7 @@
 <?php
 
+namespace Root;
+
 class Person
 {
 	protected $name;

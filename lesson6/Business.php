@@ -5,11 +5,15 @@
 // require 'src/Business.php';
 require 'vendor/autoload.php';
 
-$jeffrey = new Root\Person('Jeffry Way');
-$staff = new Root\Staff([$jeffrey]);
-$laracasts = new Root\Business($staff);
+use Root\Person;
+use Root\Staff;
+use Root\Business;
 
-$john = new Root\Person('John Doe');
+$jeffrey = new Person('Jeffry Way');
+$staff = new Staff([$jeffrey]);
+$laracasts = new Business($staff);
+
+$john = new Person('John Doe');
 $laracasts->hire($john);
 
 var_dump($laracasts);

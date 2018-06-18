@@ -1,5 +1,7 @@
 <?php
 
+namespace Root;
+
 class Business
 {
 	protected $staff;
