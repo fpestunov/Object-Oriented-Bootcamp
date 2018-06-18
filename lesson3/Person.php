@@ -2,8 +2,8 @@
 
 class Person
 {
-    public $name;
-    public $age;
+    private $name;
+    private $age;
 
     public function __construct($name)
     {
@@ -34,5 +34,7 @@ $john = new Person('John Doe');
 $john->setAge(30);
 var_dump($john->getAge());
 
-$john->age = 8;
-var_dump($john);
+// There will be error
+// "Cannot access private property Person::$age"
+//$john->age = 8;
+//var_dump($john);
