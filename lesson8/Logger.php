@@ -2,19 +2,19 @@
 
 interface Logger {}
 
-class LogToFile
+class LogToFile implements Logger
 {
     public function execute($message)
     {
-        var_dump('log the message to a file');
+        var_dump('log the message to a file: '.$message);
     }
 }
 
-class LogToDatabase
+class LogToDatabase implements Logger
 {
     public function execute($message)
     {
-        var_dump('log the message to a database');
+        var_dump('log the message to a database: '.$message);
     }
 }
 
@@ -23,6 +23,12 @@ class LogToDatabase
 
 class UsersController
 {
+    protected $logger;
+
+    public function __construct(Logger $logger)
+    {
+        $this->logger = $logger;    
+    }
     public function show()
     {
         $user = 'John Doe';
@@ -30,5 +36,14 @@ class UsersController
         // How to log this information?
         // new LogToFile ?
         // no, no its no good
+
+        // ritght way is
+        $this->logger->execute($user);
     }
 }
+
+$controller1 = new UsersController(new LogToFile);
+$controller1->show();
+
+$controller2 = new UsersController(new LogToDatabase);
+$controller2->show();
